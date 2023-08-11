@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -77,12 +78,15 @@ public class RegisterActivity extends AppCompatActivity {
        registerProgress.setCancelable(false);
        registerProgress.show();
 
+       //Tạo tài khoản với email và password
        fAuth.createUserWithEmailAndPassword(email, pwd).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
            @Override
            public void onSuccess(AuthResult authResult) {
                registerProgress.dismiss();
-               User user = new User(phone, email, pwd, 0);
-               rootRef.child("User").push().setValue(user);
+               FirebaseUser user = fAuth.getCurrentUser();
+
+               User userdb = new User(phone, email, pwd, 0);
+               rootRef.child("User").child(user.getUid()).setValue(userdb); //Lấy uid vừa tạo ở fAuth gán thành id cho User ở db
 
                Toast.makeText(RegisterActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
@@ -97,6 +101,8 @@ public class RegisterActivity extends AppCompatActivity {
            }
        });
     }
+
+    //Kiểm tra field rỗng
     public boolean checkField(EditText textField) {
         if (textField.getText().toString().isEmpty()) {
             textField.setError("Error");
@@ -107,65 +113,5 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return valid;
     }
-//    private void CreateAccount() {
-//        String phone = edtPhone.getText().toString();
-//        String email = edtEmail.getText().toString();
-//        String pwd = edtPassword.getText().toString();
-//
-//        if (TextUtils.isEmpty(phone)) {
-//            Toast.makeText(this, "Vui lòng nhập số điện thoại", Toast.LENGTH_SHORT).show();
-//        }
-//        else if (TextUtils.isEmpty(email)) {
-//            Toast.makeText(this, "Vui lòng nhập email", Toast.LENGTH_SHORT).show();
-//        }
-//        else if (TextUtils.isEmpty(pwd)) {
-//            Toast.makeText(this, "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
-//        }
-//        else {
-//            ValidateEmail(phone, email, pwd);
-//            registerProgress = new Dialog(this);
-//            registerProgress.setContentView(R.layout.register_dialog);
-//            registerProgress.setCancelable(false);
-//            registerProgress.show();
-//        }
-//    }
 
-//    private void ValidateEmail(String phone, String email, String pwd) {
-//        final DatabaseReference rootRef;
-//        rootRef = FirebaseDatabase.getInstance().getReference();
-//        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (!(snapshot.exists())){
-//                    User user = new User(phone, email, pwd, false);
-//
-//                    rootRef.child("User").push().setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if (task.isSuccessful()) {
-//                                registerProgress.dismiss();
-//                                Toast.makeText(RegisterActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
-//
-//                                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-//                                startActivity(i);
-//                            }
-//                            else {
-//                                registerProgress.dismiss();
-//                                Toast.makeText(RegisterActivity.this, "Tạo tài khoản thất bại", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-//                }
-//                else {
-//                    registerProgress.dismiss();
-//                    Toast.makeText(RegisterActivity.this, email + " đã tồn tại. Vui lòng thử lại.", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
 }
