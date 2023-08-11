@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Đăng Thuận Computer</string>
     <string name="login">Đăng nhập</string>
-    <string name="Register">Đăng ký</string>
+    <string name="register">Đăng ký</string>
+    <string name="username">Tên đăng nhập</string>
+    <string name="password">Mật khẩu</string>
+    <string name="remember_me">Lưu đăng nhập</string>
 </resources>

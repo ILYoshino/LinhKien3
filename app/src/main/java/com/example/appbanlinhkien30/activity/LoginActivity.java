@@ -4,18 +4,28 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.appbanlinhkien30.R;
 
 public class LoginActivity extends AppCompatActivity {
-    private Button btnLogin, btnRegister;
 
+    EditText edtUsername, edtPassword;
+    com.rey.material.widget.CheckBox chkRemember;
+    Button btnLogin;
+    TextView tvRegister;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnRegister = (Button) findViewById(R.id.btnRegister);
+        edtUsername = (EditText) findViewById(R.id.edtUsername);
+        edtPassword = (EditText) findViewById(R.id.edtPassword);
+        chkRemember = (com.rey.material.widget.CheckBox) findViewById(R.id.chkRemember);
+        btnLogin = (Button) findViewById(R.id.btnLoginMain);
+        tvRegister = (TextView) findViewById(R.id.tvRegister);
+
     }
 }
