@@ -79,7 +79,7 @@
         tools:ignore="VisualLintTextFieldSize" />
 
     <Button
-        android:id="@+id/btnRegisterMain"
+        android:id="@+id/btnCreateAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edtPasswordRegister"
