@@ -2,8 +2,10 @@
     <string name="app_name">Đăng Thuận Computer</string>
     <string name="login">Đăng nhập</string>
     <string name="register">Đăng ký</string>
-    <string name="username">Tên đăng nhập</string>
+    <string name="email">Email</string>
     <string name="password">Mật khẩu</string>
     <string name="remember_me">Lưu đăng nhập</string>
     <string name="create_account">Tạo tài khoản</string>
+    <string name="creating_account">Đang tạo tài khoản</string>
+    <string name="phone_number">Số điện thoại</string>
 </resources>

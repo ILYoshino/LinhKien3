@@ -34,7 +34,7 @@
         tools:ignore="TextSizeCheck" />
 
     <EditText
-        android:id="@+id/edtUsernameRegister"
+        android:id="@+id/edtPhone"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_below="@+id/imgLoginLogo"
@@ -43,16 +43,16 @@
         android:layout_marginEnd="40dp"
         android:background="@drawable/input"
         android:gravity="center"
-        android:hint="@string/username"
+        android:hint="@string/phone_number"
         tools:ignore="VisualLintTextFieldSize"
-        android:inputType="textEmailAddress"
+        android:inputType="phone"
         android:autofillHints="" />
 
     <EditText
-        android:id="@+id/edtPhone"
+        android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_below="@+id/edtUsernameRegister"
+        android:layout_below="@+id/edtPhone"
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
@@ -60,14 +60,14 @@
         android:background="@drawable/input"
         android:gravity="center"
         android:hint="Email"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         tools:ignore="VisualLintTextFieldSize" />
 
     <EditText
         android:id="@+id/edtPasswordRegister"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_below="@+id/edtPhone"
+        android:layout_below="@+id/edtEmail"
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"

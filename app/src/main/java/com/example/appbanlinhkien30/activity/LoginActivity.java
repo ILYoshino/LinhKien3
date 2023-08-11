@@ -14,16 +14,16 @@ import com.example.appbanlinhkien30.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText edtUsername, edtPassword;
-    com.rey.material.widget.CheckBox chkRemember;
-    Button btnLogin;
-    TextView tvRegister;
+    private EditText edtEmail, edtPassword;
+    private com.rey.material.widget.CheckBox chkRemember;
+    private Button btnLogin;
+    private TextView tvRegister;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        edtUsername = (EditText) findViewById(R.id.edtUsername);
+        edtEmail = (EditText) findViewById(R.id.edtLoginEmail);
         edtPassword = (EditText) findViewById(R.id.edtPassword);
         chkRemember = (com.rey.material.widget.CheckBox) findViewById(R.id.chkRemember);
         btnLogin = (Button) findViewById(R.id.btnLoginMain);
