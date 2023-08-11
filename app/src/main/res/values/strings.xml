@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">AppBanLinhKien30</string>
+    <string name="app_name">Đăng Thuận Computer</string>
+    <string name="login">Đăng nhập</string>
+    <string name="Register">Đăng ký</string>
 </resources>
