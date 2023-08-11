@@ -5,4 +5,5 @@
     <string name="username">Tên đăng nhập</string>
     <string name="password">Mật khẩu</string>
     <string name="remember_me">Lưu đăng nhập</string>
+    <string name="create_account">Tạo tài khoản</string>
 </resources>

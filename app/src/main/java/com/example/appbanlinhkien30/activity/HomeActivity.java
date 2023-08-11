@@ -27,5 +27,13 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(HomeActivity.this, RegisterActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }
