@@ -63,9 +63,10 @@ public class LoginActivity extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getApplicationContext(), "Sai tài khoản hoặc mật khẩu", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
+                    savingPreferences();
                 }
             }
         });
@@ -103,5 +104,48 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    private void savingPreferences() {
+        SharedPreferences pref = this.getSharedPreferences("RememberPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
 
+        String email = edtEmail.getText().toString();
+        String pwd = edtPassword.getText().toString();
+        Boolean checked = chkRemember.isChecked();
+
+        if(!checked) {
+            editor.clear();
+        }
+        else {
+           editor.putString("email", email);
+           editor.putString("pwd", pwd);
+           editor.putBoolean("checked", true);
+        }
+        editor.apply();
+    }
+
+    private void restoringPreferences() {
+        SharedPreferences pref = this.getSharedPreferences("RememberPref", MODE_PRIVATE);
+        if (pref != null) {
+            Boolean checked = pref.getBoolean("checked", false);
+            if (checked) {
+                String email = pref.getString("email", "");
+                String pwd = pref.getString("pwd", "");
+                edtEmail.setText(email);
+                edtPassword.setText(pwd);
+            }
+            chkRemember.setChecked(checked);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        savingPreferences();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        restoringPreferences();
+    }
 }

@@ -98,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
            @Override
            public void onFailure(@NonNull Exception e) {
                registerProgress.dismiss();
-               Toast.makeText(RegisterActivity.this, "Tạo tài khoản thất bại", Toast.LENGTH_SHORT).show();
+               Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
            }
        });
     }
