@@ -90,12 +90,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="130dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/register"
             android:clickable="true"
-            android:layout_marginTop="5dp"
             android:text="Đăng ký"
             android:textColor="#000"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 
     <Button

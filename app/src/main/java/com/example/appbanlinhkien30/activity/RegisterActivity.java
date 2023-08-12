@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.appbanlinhkien30.R;
 import com.example.appbanlinhkien30.model.User;
+import com.example.appbanlinhkien30.util.FieldValidator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,11 +36,9 @@ import java.util.HashMap;
 public class RegisterActivity extends AppCompatActivity {
     private EditText edtPhone, edtPassword, edtEmail;
     private Button btnRegister;
-    private Boolean valid = true;
     private Dialog registerProgress;
-    FirebaseAuth fAuth;
-
-    DatabaseReference rootRef;
+    private FirebaseAuth fAuth;
+    private DatabaseReference rootRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,11 +56,10 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkField(edtPhone);
-                checkField(edtPassword);
-                checkField(edtEmail);
 
-                if (valid) {
+                if (FieldValidator.checkField(edtPhone)
+                        && FieldValidator.checkField(edtEmail)
+                        && FieldValidator.checkField(edtPassword)){
                     CreateAccount();
                 }
             }
@@ -101,17 +99,4 @@ public class RegisterActivity extends AppCompatActivity {
            }
        });
     }
-
-    //Kiểm tra field rỗng
-    public boolean checkField(EditText textField) {
-        if (textField.getText().toString().isEmpty()) {
-            textField.setError("Error");
-            valid = false;
-        }
-        else {
-            valid = true;
-        }
-        return valid;
-    }
-
 }
