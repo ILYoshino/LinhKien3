@@ -6,10 +6,12 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ViewFlipper;
@@ -17,6 +19,7 @@ import android.widget.ViewFlipper;
 import com.bumptech.glide.Glide;
 import com.example.appbanlinhkien30.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +32,24 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     ListView listViewMHC;
     DrawerLayout drawerLayout;
+    Button btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        btnLogout = (Button) findViewById(R.id.btnLogout);
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                finish();
+            }
+        });
+
         Reflect();
         ActionBar();
         ActionViewFlipper();

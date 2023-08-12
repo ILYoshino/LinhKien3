@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -83,13 +84,15 @@ public class RegisterActivity extends AppCompatActivity {
                registerProgress.dismiss();
                FirebaseUser user = fAuth.getCurrentUser();
 
-               User userdb = new User(phone, email, pwd, 0);
-               rootRef.child("User").child(user.getUid()).setValue(userdb); //Lấy uid vừa tạo ở fAuth gán thành id cho User ở db
+               User userdata = new User(phone, email, pwd, 0);
+               rootRef.child("User").child(user.getUid()).setValue(userdata); //Lấy uid vừa tạo ở fAuth gán thành id cho User ở db
 
                Toast.makeText(RegisterActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
+
                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
                startActivity(i);
                finish();
+               fAuth.signOut();
            }
        }).addOnFailureListener(new OnFailureListener() {
            @Override

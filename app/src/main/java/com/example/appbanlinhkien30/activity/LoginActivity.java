@@ -4,11 +4,13 @@ package com.example.appbanlinhkien30.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.appbanlinhkien30.R;
 import com.example.appbanlinhkien30.model.User;
@@ -57,12 +59,11 @@ public class LoginActivity extends AppCompatActivity {
                                 public void onSuccess(AuthResult authResult) {
                                     checkUserAccessLevel(authResult.getUser().getUid());
 
-
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-
+                                    Toast.makeText(getApplicationContext(), "Sai tài khoản hoặc mật khẩu", Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }
@@ -82,9 +83,9 @@ public class LoginActivity extends AppCompatActivity {
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Intent i;
                 if(snapshot.exists()) {
                     User user = snapshot.getValue(User.class);
-                    Intent i;
                     if (user.getIsAdmin() == 0) {
                         i = new Intent(LoginActivity.this, MainActivity.class);
                     }
@@ -102,12 +103,5 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
-        }
-    }
+
 }
